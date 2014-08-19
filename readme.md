@@ -40,19 +40,41 @@ me.destroy
 
 Validate that every Student's last name is unique
 
+In the student.rb file:
+
 ```
+class Student < ActiveRecord::Base
+  validates_uniqueness_of :last_name
+end
+
+
 ```
 
 
 Validate that every Student has a first and last name that is longer than 4 characters
 
+In the student.rb file:
+
+
 ```
+class Student < ActiveRecord::Base
+  validates_length_of :first_name, minimum: 4
+  validates_length_of :last_name, minimum: 4
+end
+
 ```
 
 
 Validate that every first and last name cannot be empty
 
+In the student.rb file:
+
 ```
+class Student < ActiveRecord::Base
+  validates_presence_of :first_name
+  validates_presence_of :last_name
+end
+
 ```
 
 
@@ -60,6 +82,15 @@ Combine all of these individual validations into one validation (using validate 
 
 
 ```
+class Student < ActiveRecord::Base
+	validates :first_name, :presence => true,
+                       :length => {:minimum => 4}
+
+	validates :last_name, :presence => true,
+                      :length => {:minimum => 4},
+                      :uniqueness => true
+end
+
 ```
 
 
