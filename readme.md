@@ -143,6 +143,7 @@ john.save
 ##### Find all of the Students
 
 ```
+Student.all
 
 ```
 
@@ -157,12 +158,14 @@ Student.find_by_id(128)
 ##### Find the first student in the table
 
 ```
+Student.first
 ```
 
 
 ##### Find the last student in the table
 
 ```
+Student.last
 ```
 
 
@@ -174,6 +177,7 @@ doesmith = Student.find_by_last_name("Doesmith")
 ##### Find all of the students and limit the search to 5 students, starting with the 2nd student and finally, order the students in alphabetical order
 
 ```
+Student.all.limit(5).offset(1).order(last_name: :desc)
 ```
 
 ##### Delete Jonathan Doesmith
@@ -191,7 +195,7 @@ john.destroy
 
 ```
 
-###### Write a custom validation to ensure that no one named Delmer Reed, Tim Licata, Anil Bridgpal or Elie Schoppik is included in the students table
+##### Write a custom validation to ensure that no one named Delmer Reed, Tim Licata, Anil Bridgpal or Elie Schoppik is included in the students table
 
 ```
 
