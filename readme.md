@@ -18,27 +18,27 @@ me.last_name = "Monette"
 me.age = 25
 ```
 
-Save the student to the database
+##### Save the student to the database
 
 ```
 me.save
 ```
 
 
-Using the find/set/save syntax update the student's first name to taco
+##### Using the find/set/save syntax update the student's first name to taco
 
 ```
 me.update_attributes(:first_name=>"Taco")
 ```
 
-Delete the student (where first_name is taco). 
+##### Delete the student (where first_name is taco). 
 
 ```
 me = Student.find_by_first_name("Taco")
 me.destroy
 ```
 
-Validate that every Student's last name is unique
+##### Validate that every Student's last name is unique
 
 In the student.rb file:
 
@@ -51,7 +51,7 @@ end
 ```
 
 
-Validate that every Student has a first and last name that is longer than 4 characters
+##### Validate that every Student has a first and last name that is longer than 4 characters
 
 In the student.rb file:
 
@@ -65,7 +65,7 @@ end
 ```
 
 
-Validate that every first and last name cannot be empty
+##### Validate that every first and last name cannot be empty
 
 In the student.rb file:
 
@@ -78,7 +78,7 @@ end
 ```
 
 
-Combine all of these individual validations into one validation (using validate and a hash) 
+##### Combine all of these individual validations into one validation (using validate and a hash) 
 
 
 ```
@@ -94,88 +94,107 @@ end
 ```
 
 
-Using the create syntax create a student named John Doe who is 33 years old
+##### Using the create syntax create a student named John Doe who is 33 years old
+
+```
+john = Student.create(:first_name =>"John", :last_name => "Doe",:age=>33)
+```
+
+
+##### Show if this new student entry is valid
+
+```
+john = Student.create(:first_name =>"John", :last_name => "Doe",:age=>33).valid?
+```
+
+
+##### Show the number of errors for this student instance
+
+```
+john = Student.create(:first_name =>"John", :last_name => "Doe",:age=>33).errors.size
+```
+OR
+
+```
+john = Student.create(:first_name =>"John", :last_name => "Doe",:age=>33).errors.count
+```
+
+##### In one command, Change John Doe's name to Jonathan Doesmith 
+
+```
+john = Student.create(:first_name =>"Jonathan", :last_name => "Doesmith",:age=>33)
+```
+
+
+##### Clear the errors array
+
+```
+john.errors.clear
+```
+
+
+##### Save Jonathan Doesmith
+
+```
+john.save
+```
+
+
+##### Find all of the Students
+
+```
+
+```
+
+
+##### Find the student with an ID of 128 and if it does not exist, make sure it returns nil and not an error
+
+```
+Student.find_by_id(128)
+```
+
+
+##### Find the first student in the table
 
 ```
 ```
 
 
-Show if this new student entry is valid
+##### Find the last student in the table
 
 ```
 ```
 
 
-Show the number of errors for this student instance
+##### Find the student with the last name of Doesmith
+
+```
+doesmith = Student.find_by_last_name("Doesmith")
+```
+##### Find all of the students and limit the search to 5 students, starting with the 2nd student and finally, order the students in alphabetical order
 
 ```
 ```
 
-
-In one command, Change John Doe's name to Jonathan Doesmith 
-
-```
-```
-
-
-Clear the errors array
+##### Delete Jonathan Doesmith
 
 ```
-```
-
-
-Save Jonathan Doesmith
-
-```
-```
-
-
-Find all of the Students
-
-```
-```
-
-
-Find the student with an ID of 128 and if it does not exist, make sure it returns nil and not an error
-
-```
-```
-
-
-Find the first student in the table
-
-```
-```
-
-
-Find the last student in the table
-
-```
-```
-
-
-Find the student with the last name of Doesmith
-
-```
-```
-Find all of the students and limit the search to 5 students, starting with the 2nd student and finally, order the students in alphabetical order
-
-```
-```
-
-Delete Jonathan Doesmith
-
-```
+john = Student.find_by_last_name("Doesmith")
+john.destroy
 ```
 
 
 ### Bonus
-1. Use the validates_format_of and regex to only validate names that consist of letters (no numbers or symbols) and start with a capital letter
-```
-```
-2. Write a custom validation to ensure that no one named Delmer Reed, Tim Licata, Anil Bridgpal or Elie Schoppik is included in the students table
+##### Use the validates_format_of and regex to only validate names that consist of letters (no numbers or symbols) and start with a capital letter
 
 ```
+
+```
+
+###### Write a custom validation to ensure that no one named Delmer Reed, Tim Licata, Anil Bridgpal or Elie Schoppik is included in the students table
+
+```
+
 ```
 
 
