@@ -9,30 +9,143 @@ For this lab, we'd like you to strengthen your Rails console skills. This lab is
 
 ### Tasks to create
 
-1. Using the new/save syntax, create a student, first and last name and an age 
-2. Save the student to the database
-3. Using the find/set/save syntax update the student's first name to taco
-4. Delete the student (where first_name is taco)
-5. Validate that every Student's last name is unique
-6. Validate that every Student has a first and last name that is longer than 4 characters
-7. Validate that every first and last name cannot be empty
-7. Combine all of these individual validations into one validation (using validate and a hash) 
-8. Using the create syntax create a student named John Doe who is 33 years old
-9. Show if this new student entry is valid
-10. Show the number of errors for this student instance
-11. In one command, Change John Doe's name to Jonathan Doesmith 
-12. Clear the errors array
-13. Save Jonathan Doesmith
-15. Find all of the Students
-16. Find the student with an ID of 128 and if it does not exist, make sure it returns nil and not an error
-17. Find the first student in the table
-18. Find the last student in the table
-19. Find the student with the last name of Doesmith
-21. Find all of the students and limit the search to 5 students, starting with the 2nd student and finally, order the students in alphabetical order
-20. Delete Jonathan Doesmith
+Using the new/save syntax, create a student, first and last name and an age 
+
+```
+me = Student.new
+me.first_name = "Steph"
+me.last_name = "Monette"
+me.age = 25
+```
+
+Save the student to the database
+
+```
+me.save
+```
+
+
+Using the find/set/save syntax update the student's first name to taco
+
+```
+me.update_attributes(:first_name=>"Taco")
+```
+
+Delete the student (where first_name is taco). 
+
+```
+me = Student.find_by_first_name("Taco")
+me.destroy
+```
+
+Validate that every Student's last name is unique
+
+```
+```
+
+
+Validate that every Student has a first and last name that is longer than 4 characters
+
+```
+```
+
+
+Validate that every first and last name cannot be empty
+
+```
+```
+
+
+Combine all of these individual validations into one validation (using validate and a hash) 
+
+
+```
+```
+
+
+Using the create syntax create a student named John Doe who is 33 years old
+
+```
+```
+
+
+Show if this new student entry is valid
+
+```
+```
+
+
+Show the number of errors for this student instance
+
+```
+```
+
+
+In one command, Change John Doe's name to Jonathan Doesmith 
+
+```
+```
+
+
+Clear the errors array
+
+```
+```
+
+
+Save Jonathan Doesmith
+
+```
+```
+
+
+Find all of the Students
+
+```
+```
+
+
+Find the student with an ID of 128 and if it does not exist, make sure it returns nil and not an error
+
+```
+```
+
+
+Find the first student in the table
+
+```
+```
+
+
+Find the last student in the table
+
+```
+```
+
+
+Find the student with the last name of Doesmith
+
+```
+```
+Find all of the students and limit the search to 5 students, starting with the 2nd student and finally, order the students in alphabetical order
+
+```
+```
+
+Delete Jonathan Doesmith
+
+```
+```
+
 
 ### Bonus
 1. Use the validates_format_of and regex to only validate names that consist of letters (no numbers or symbols) and start with a capital letter
+```
+```
 2. Write a custom validation to ensure that no one named Delmer Reed, Tim Licata, Anil Bridgpal or Elie Schoppik is included in the students table
+
+```
+```
+
 
 
