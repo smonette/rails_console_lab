@@ -144,7 +144,6 @@ john.save
 
 ```
 Student.all
-
 ```
 
 
@@ -177,7 +176,7 @@ doesmith = Student.find_by_last_name("Doesmith")
 ##### Find all of the students and limit the search to 5 students, starting with the 2nd student and finally, order the students in alphabetical order
 
 ```
-Student.all.limit(5).offset(1).order(last_name: :desc)
+Student.all.limit(5).offset(1).order(last_name: :asc)
 ```
 
 ##### Delete Jonathan Doesmith
