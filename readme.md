@@ -9,7 +9,7 @@ For this lab, we'd like you to strengthen your Rails console skills. This lab is
 
 ### Tasks to create
 
-Using the new/save syntax, create a student, first and last name and an age 
+Using the new/save syntax, create a student, first and last name and an age
 
 ```
 me = Student.new
@@ -31,7 +31,7 @@ me.save
 me.update_attributes(:first_name=>"Taco")
 ```
 
-##### Delete the student (where first_name is taco). 
+##### Delete the student (where first_name is taco).
 
 ```
 me = Student.find_by_first_name("Taco")
@@ -75,7 +75,7 @@ end
 ```
 
 
-##### Combine all of these individual validations into one validation (using validate and a hash) 
+##### Combine all of these individual validations into one validation (using validate and a hash)
 
 
 ```
@@ -100,25 +100,25 @@ john=Student.create(:first_name =>"John", :last_name => "Doe",:age=>33)
 ##### Show if this new student entry is valid
 
 ```
-john=Student.create(:first_name =>"John", :last_name => "Doe",:age=>33).valid?
+john.valid?
 ```
 
 
 ##### Show the number of errors for this student instance
 
 ```
-john=Student.create(:first_name =>"John", :last_name => "Doe",:age=>33).errors.size
+john.errors.size
 ```
 OR
 
 ```
-john=Student.create(:first_name =>"John", :last_name => "Doe",:age=>33).errors.count
+john.errors.count
 ```
 
-##### In one command, Change John Doe's name to Jonathan Doesmith 
+##### In one command, Change John Doe's name to Jonathan Doesmith
 
 ```
-john=Student.create(:first_name =>"Jonathan", :last_name => "Doesmith",:age=>33)
+john.update_attributes(:first_name =>"Jonathan", :last_name => "Doesmith")
 ```
 
 
@@ -190,18 +190,26 @@ john.destroy
 class Student < ActiveRecord::Base
   validates :first_name, :presence => true,
                          :length => {:minimum => 4},
-                         :format => {:with => /\b[A-Z].*?\b/}
+                         :format => {:with => /\A[A-Z][a-zA-Z]+\z/}
 
   validates :last_name, :presence => true,
                         :length => {:minimum => 4},
                         :uniqueness => true,
-                        :format => {:with => /\b[A-Z].*?\b/}
+                        :format => {:with => /\A[A-Z][a-zA-Z]+\z/}
 end
 ```
 
 ##### Write a custom validation to ensure that no one named Delmer Reed, Tim Licata, Anil Bridgpal or Elie Schoppik is included in the students table
 
 ```
+FORBIDDEN_FIRSTNAMES =[["Delmer", "Reed"],["Elie", "Schoppik"],["Anil","Bridgpal"],["Tim", "Licata"]]
+  validate :username_is_allowed
+
+def username_is_allowed
+  if FORBIDDEN_FIRSTNAMES.include?([first_name, last_name])
+    error.add(:first_name, "{first_name} is restricted")
+  end
+end
 
 ```
 

@@ -16,4 +16,18 @@ class Student < ActiveRecord::Base
                         :length => {:minimum => 4},
                         :uniqueness => true,
                         :format => {:with => /\b[A-Z].*?\b/}
+
+  forbidden_names = []
+  def not_an_instructor
+    if expiration_date.present? && expiration_date < Date.today
+      errors.add(:last_name, "can't be an instructor")
+    end
+  end
+
 end
+
+
+
+
+
+
