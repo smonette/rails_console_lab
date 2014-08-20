@@ -46,8 +46,6 @@ In the student.rb file:
 class Student < ActiveRecord::Base
   validates_uniqueness_of :last_name
 end
-
-
 ```
 
 
@@ -61,7 +59,6 @@ class Student < ActiveRecord::Base
   validates_length_of :first_name, minimum: 4
   validates_length_of :last_name, minimum: 4
 end
-
 ```
 
 
@@ -90,39 +87,38 @@ class Student < ActiveRecord::Base
                       :length => {:minimum => 4},
                       :uniqueness => true
 end
-
 ```
 
 
 ##### Using the create syntax create a student named John Doe who is 33 years old
 
 ```
-john = Student.create(:first_name =>"John", :last_name => "Doe",:age=>33)
+john=Student.create(:first_name =>"John", :last_name => "Doe",:age=>33)
 ```
 
 
 ##### Show if this new student entry is valid
 
 ```
-john = Student.create(:first_name =>"John", :last_name => "Doe",:age=>33).valid?
+john=Student.create(:first_name =>"John", :last_name => "Doe",:age=>33).valid?
 ```
 
 
 ##### Show the number of errors for this student instance
 
 ```
-john = Student.create(:first_name =>"John", :last_name => "Doe",:age=>33).errors.size
+john=Student.create(:first_name =>"John", :last_name => "Doe",:age=>33).errors.size
 ```
 OR
 
 ```
-john = Student.create(:first_name =>"John", :last_name => "Doe",:age=>33).errors.count
+john=Student.create(:first_name =>"John", :last_name => "Doe",:age=>33).errors.count
 ```
 
 ##### In one command, Change John Doe's name to Jonathan Doesmith 
 
 ```
-john = Student.create(:first_name =>"Jonathan", :last_name => "Doesmith",:age=>33)
+john=Student.create(:first_name =>"Jonathan", :last_name => "Doesmith",:age=>33)
 ```
 
 
@@ -191,7 +187,16 @@ john.destroy
 ##### Use the validates_format_of and regex to only validate names that consist of letters (no numbers or symbols) and start with a capital letter
 
 ```
+class Student < ActiveRecord::Base
+  validates :first_name, :presence => true,
+                         :length => {:minimum => 4},
+                         :format => {:with => /\b[A-Z].*?\b/}
 
+  validates :last_name, :presence => true,
+                        :length => {:minimum => 4},
+                        :uniqueness => true,
+                        :format => {:with => /\b[A-Z].*?\b/}
+end
 ```
 
 ##### Write a custom validation to ensure that no one named Delmer Reed, Tim Licata, Anil Bridgpal or Elie Schoppik is included in the students table

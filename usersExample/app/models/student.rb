@@ -9,9 +9,11 @@
 
 class Student < ActiveRecord::Base
   validates :first_name, :presence => true,
-                         :length => {:minimum => 4}
+                         :length => {:minimum => 4},
+                         :format => {:with => /\b[A-Z].*?\b/}
 
   validates :last_name, :presence => true,
                         :length => {:minimum => 4},
-                        :uniqueness => true
+                        :uniqueness => true,
+                        :format => {:with => /\b[A-Z].*?\b/}
 end
